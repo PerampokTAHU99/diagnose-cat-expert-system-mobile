@@ -16,7 +16,7 @@ class _DiagnosaHasilState extends State<DiagnosaHasil> {
       backgroundColor: Theme.of(context).colorScheme.primary,
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.secondary,
-        title: const Text("Riwayat"),
+        title: const Text("Hasil Diagnosa"),
         elevation: 0,
       ),
       body: ListView(
