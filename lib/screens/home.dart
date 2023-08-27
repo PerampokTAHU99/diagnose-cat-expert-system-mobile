@@ -20,31 +20,34 @@ class _HomeState extends State<Home> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
-                color: const Color(0xff967758),
-                padding: const EdgeInsets.all(18.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Image.asset('img/cat.png'),
-                    const Column(
-                      children: [
-                        Text("Selamat Datang", style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18.0,
-                        )),
-                        Text("di CatCare App", style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18.0,
-                        )),
-                      ],
-                    ),
-                  ],
+              ClipPath(
+                clipper: CurveClipper(),
+                child: Container(
+                  color: const Color(0xff967758),
+                  padding: const EdgeInsets.all(18.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Image.asset('img/cat.png'),
+                      const Column(
+                        children: [
+                          Text("Selamat Datang", style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18.0,
+                          )),
+                          Text("di CatCare App", style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18.0,
+                          )),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              
+
               const SizedBox(height: 40.0),
               const Text("MENU", style: TextStyle(
                 fontWeight: FontWeight.w500,
@@ -95,9 +98,8 @@ class _HomeState extends State<Home> {
                         const SizedBox(height: 5.0),
                         const Text("Daftar")
                       ],
-                    )
+                    ),
                   ),
-
                 ],
               ),
               const SizedBox(height: 10.0),
@@ -113,7 +115,7 @@ class _HomeState extends State<Home> {
                         const SizedBox(height: 5.0),
                         const Text("Bantuan")
                       ],
-                    )
+                    ),
                   ),
                   GestureDetector(
                     onTap: () {},
@@ -123,7 +125,7 @@ class _HomeState extends State<Home> {
                         const SizedBox(height: 5.0),
                         const Text("Tentang")
                       ],
-                    )
+                    ),
                   ),
                   GestureDetector(
                     onTap: () {},
@@ -135,13 +137,32 @@ class _HomeState extends State<Home> {
                       ],
                     )
                   ),
-
                 ],
-              )
+              ),
             ],
           ),
         ),
       ),
     );
   }
+}
+
+class CurveClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    int curveHeight = 40;
+    Offset controlPoint = Offset(size.width / 2, size.height + curveHeight);
+    Offset endPoint = Offset(size.width, size.height - curveHeight);
+
+    Path path = Path()
+      ..lineTo(0, size.height - curveHeight)
+      ..quadraticBezierTo(controlPoint.dx, controlPoint.dy, endPoint.dx, endPoint.dy)
+      ..lineTo(size.width, 0)
+      ..close();
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
