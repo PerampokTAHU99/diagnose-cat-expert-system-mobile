@@ -27,8 +27,8 @@ class _HomeState extends State<Home> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Image.asset('img/cat.png'),
-                    Column(
-                      children: const [
+                    const Column(
+                      children: [
                         Text("Selamat Datang", style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
