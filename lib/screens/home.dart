@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'daftar.dart';
-import 'diagnosa.dart';
-import 'riwayat.dart';
-
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -62,8 +58,7 @@ class _HomeState extends State<Home> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => const Diagnosa()));
+                      Navigator.of(context).pushNamed("/diagnosa");
                     },
                     child: Column(
                       children: [
@@ -75,8 +70,7 @@ class _HomeState extends State<Home> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => const Riwayat()));
+                      Navigator.of(context).pushNamed("/riwayat");
                     },
                     child: Column(
                       children: [
@@ -89,8 +83,7 @@ class _HomeState extends State<Home> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => const Daftar()));
+                      Navigator.of(context).pushNamed("/daftar");
                     },
                     child: Column(
                       children: [

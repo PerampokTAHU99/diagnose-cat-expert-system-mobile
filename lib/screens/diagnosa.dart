@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'diagnosa_hasil.dart';
-
 class Diagnosa extends StatefulWidget {
   const Diagnosa({super.key});
 
@@ -49,8 +47,7 @@ class _DiagnosaState extends State<Diagnosa> {
       ),
       floatingActionButton: ElevatedButton(
         onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => const DiagnosaHasil()));
+          Navigator.of(context).pushNamed("/diagnosa-hasil");
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Theme.of(context).colorScheme.secondary,
