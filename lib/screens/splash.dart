@@ -1,8 +1,5 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-
-import 'home.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -19,10 +16,10 @@ class _SplashState extends State<Splash> {
   }
 
   startSplashScreen() async {
-    var duration = const Duration(seconds: 2);
+    const Duration duration = Duration(seconds: 2);
+
     return Timer(duration, () {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const Home()));
+      Navigator.of(context).pushReplacementNamed("/home");
     });
   }
 
