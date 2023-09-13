@@ -51,10 +51,10 @@ class MyApp extends StatelessWidget {
               type: PageTransitionType.bottomToTop,
             );
           case "/daftar":
-          return PageTransition(
-            child: const Daftar(),
-            type: PageTransitionType.rightToLeftWithFade,
-          );
+            return PageTransition(
+              child: const Daftar(),
+              type: PageTransitionType.rightToLeftWithFade,
+            );
           default: return MaterialPageRoute(
             builder: ((context) => const Placeholder()),
           );
