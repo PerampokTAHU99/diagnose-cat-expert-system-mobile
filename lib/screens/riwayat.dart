@@ -32,20 +32,22 @@ class _RiwayatState extends State<Riwayat> {
                 Card(
                   elevation: 0,
                   child: Padding(
-                    padding: const EdgeInsets.all(14.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Hasil Diagnosa", style: TextStyle(fontWeight: FontWeight.w700)),
-                            Text("Nama Penyakit: Scabies"),
-                            Text("Tanggal: 21 April 2022"),
-                          ],
+                        const SizedBox(
+                          width: 170,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Hasil Diagnosa", style: TextStyle(fontWeight: FontWeight.w700),),
+                              Text("Nama Penyakit: Scabies",),
+                              Text("Tanggal: 21 April 2022",),
+                            ],
+                          ),
                         ),
-                  
-                        Image.asset('img/cover.png', width: 100.0,)
+                        Image.asset('img/cover.png', scale: 5,),
                       ],
                     ),
                   ),
