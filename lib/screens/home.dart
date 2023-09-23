@@ -101,7 +101,9 @@ class _HomeState extends State<Home> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).pushNamed("/bantuan");
+                    },
                     child: Column(
                       children: [
                         Image.asset('img/bantuan.png'),
@@ -111,7 +113,9 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).pushNamed("/tentang");
+                    },
                     child: Column(
                       children: [
                         Image.asset('img/info.png'),
