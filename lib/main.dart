@@ -1,4 +1,5 @@
 import 'package:cat/screens/diagnosa_hasil.dart';
+import 'package:cat/screens/tentang.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -7,6 +8,7 @@ import 'screens/diagnosa.dart';
 import 'screens/home.dart';
 import 'screens/riwayat.dart';
 import 'screens/splash.dart';
+import 'screens/bantuan.dart';
 
 void main() => runApp(const MyApp());
 
@@ -21,8 +23,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Poppins',
         colorScheme: ColorScheme.fromSwatch().copyWith(
-          primary: const Color(0xffEAC696),
-          secondary: const Color(0xff967758),
+          primary: const Color(0xFFEAC696),
+          secondary: const Color(0xFF967758),
+          tertiary: const Color(0xFFEDE2CF),
+          primaryContainer: const Color(0xFFFFFFFF),
         ),
       ),
       initialRoute: "/",
@@ -54,6 +58,16 @@ class MyApp extends StatelessWidget {
             return PageTransition(
               child: const Daftar(),
               type: PageTransitionType.rightToLeftWithFade,
+            );
+          case "/bantuan":
+            return PageTransition(
+              child: const Bantuan(),
+              type: PageTransitionType.leftToRight,
+            );
+          case "/tentang":
+            return PageTransition(
+              child: const Tentang(),
+              type: PageTransitionType.fade,
             );
           default: return MaterialPageRoute(
             builder: ((context) => const Placeholder()),
