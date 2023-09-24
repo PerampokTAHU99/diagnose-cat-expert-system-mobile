@@ -8,6 +8,44 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  Future<void> _showExitDialog(BuildContext context) async {
+    return showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Keluar Aplikasi"),
+          content: const SingleChildScrollView(
+            child: ListBody(
+              children: [
+                Text(
+                  "Apakah anda ingin keluar dari aplikasi?",
+                  style: TextStyle(
+                    fontSize: 13,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              child: Text(
+                "Tidak",
+                style: TextStyle(color: Theme.of(context).colorScheme.secondary,),
+              ),
+              onPressed: () => Navigator.of(context).pop(false),
+            ),
+            TextButton(
+              child: const Text("Keluar", style: TextStyle(color: Colors.redAccent),),
+              onPressed: () => Navigator.of(context).pop(true),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,11 +83,15 @@ class _HomeState extends State<Home> {
               ),
 
               const SizedBox(height: 40.0),
-              const Text("MENU", style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 16.0,
-                color: Color(0xff967758)
-              ), textAlign: TextAlign.center),
+              const Text(
+                "MENU",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16.0,
+                  color: Color(0xff967758)
+                ),
+              ),
 
               const SizedBox(height: 20.0),
               Row(
@@ -125,7 +167,9 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      _showExitDialog(context);
+                    },
                     child: Column(
                       children: [
                         Image.asset('img/keluar.png'),
