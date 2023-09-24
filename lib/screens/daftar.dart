@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'daftar_detail.dart';
-
 class Daftar extends StatefulWidget {
   const Daftar({super.key});
 
@@ -32,8 +30,7 @@ class _DaftarState extends State<Daftar> {
             title: Text(_listData[index]),
             trailing: const Icon(Icons.chevron_right),
             onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const DaftarDetail()));
+              Navigator.of(context).pushNamed("/daftar-detail");
             },
           );
         },

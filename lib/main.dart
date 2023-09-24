@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
-import 'screens/daftar.dart';
-import 'screens/diagnosa.dart';
-import 'screens/home.dart';
-import 'screens/riwayat.dart';
 import 'screens/splash.dart';
-import 'screens/bantuan.dart';
+import 'screens/home.dart';
+import 'screens/diagnosa.dart';
 import 'screens/diagnosa_hasil.dart';
+import 'screens/riwayat.dart';
+import 'screens/daftar.dart';
+import 'screens/daftar_detail.dart';
+import 'screens/bantuan.dart';
 import 'screens/tentang.dart';
 
 void main() => runApp(const MyApp());
@@ -58,6 +59,11 @@ class MyApp extends StatelessWidget {
             return PageTransition(
               type: PageTransitionType.rightToLeft,
               child: const Daftar(),
+            );
+          case "/daftar-detail":
+            return PageTransition(
+              type: PageTransitionType.leftToRight,
+              child: const DaftarDetail(),
             );
           case "/bantuan":
             return PageTransition(
