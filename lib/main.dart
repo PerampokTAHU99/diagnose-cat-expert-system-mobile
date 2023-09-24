@@ -36,38 +36,38 @@ class MyApp extends StatelessWidget {
             return MaterialPageRoute(builder: ((context) => const Splash()));
           case "/home":
             return PageTransition(
-              child: const Home(),
               type: PageTransitionType.fade,
+              child: const Home(),
             );
           case "/diagnosa":
             return PageTransition(
+              type: PageTransitionType.leftToRight,
               child: const Diagnosa(),
-              type: PageTransitionType.leftToRightWithFade,
             );
           case "/diagnosa-hasil":
             return PageTransition(
-              child: const DiagnosaHasil(),
               type: PageTransitionType.bottomToTop,
+              child: const DiagnosaHasil(),
             );
           case "/riwayat":
             return PageTransition(
-              child: const Riwayat(),
               type: PageTransitionType.bottomToTop,
+              child: const Riwayat(),
             );
           case "/daftar":
             return PageTransition(
+              type: PageTransitionType.rightToLeft,
               child: const Daftar(),
-              type: PageTransitionType.rightToLeftWithFade,
             );
           case "/bantuan":
             return PageTransition(
-              child: const Bantuan(),
               type: PageTransitionType.leftToRight,
+              child: const Bantuan(),
             );
           case "/tentang":
             return PageTransition(
-              child: const Tentang(),
               type: PageTransitionType.fade,
+              child: const Tentang(),
             );
           default: return MaterialPageRoute(
             builder: ((context) => const Placeholder()),
