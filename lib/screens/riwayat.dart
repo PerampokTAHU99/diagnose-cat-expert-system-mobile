@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'diagnosa_hasil.dart';
-
 class Riwayat extends StatefulWidget {
   const Riwayat({super.key});
 
@@ -24,8 +22,7 @@ class _RiwayatState extends State<Riwayat> {
         children: [
           GestureDetector(
             onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const DiagnosaHasil()));
+              Navigator.of(context).pushNamed("/diagnosa-hasil");
             },
             child: Column(
               children: [
