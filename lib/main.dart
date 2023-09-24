@@ -1,5 +1,3 @@
-import 'package:cat/screens/diagnosa_hasil.dart';
-import 'package:cat/screens/tentang.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -9,6 +7,8 @@ import 'screens/home.dart';
 import 'screens/riwayat.dart';
 import 'screens/splash.dart';
 import 'screens/bantuan.dart';
+import 'screens/diagnosa_hasil.dart';
+import 'screens/tentang.dart';
 
 void main() => runApp(const MyApp());
 
