@@ -3,6 +3,7 @@ import 'package:page_transition/page_transition.dart';
 
 import 'screens/splash.dart';
 import 'screens/login.dart';
+import 'screens/register.dart';
 import 'screens/home.dart';
 import 'screens/diagnosa.dart';
 import 'screens/diagnosa_hasil.dart';
@@ -41,6 +42,11 @@ class MyApp extends StatelessWidget {
             return PageTransition(
               type: PageTransitionType.fade,
               child: const Login()
+            );
+          case "/register":
+            return PageTransition(
+              type: PageTransitionType.fade,
+              child: const Register(),
             );
           case "/home":
             return PageTransition(
