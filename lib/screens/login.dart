@@ -105,7 +105,10 @@ class Login extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).pushNamed("/home");
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                        "/home",
+                        (context) => false,
+                      );
                     },
                     style: ElevatedButton.styleFrom().copyWith(
                       backgroundColor: MaterialStatePropertyAll(
