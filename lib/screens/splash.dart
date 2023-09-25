@@ -19,7 +19,7 @@ class _SplashState extends State<Splash> {
     const Duration duration = Duration(seconds: 2);
 
     return Timer(duration, () {
-      Navigator.of(context).pushReplacementNamed("/home");
+      Navigator.of(context).pushReplacementNamed("/login");
     });
   }
 
@@ -34,18 +34,24 @@ class _SplashState extends State<Splash> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(height: 100.0),
-                const Text("Aplikasi Sistem Pakar", style: TextStyle(
+                const Text(
+                  "Aplikasi Sistem Pakar",
+                  style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 20
-                )),
+                  ),
+                ),
                 
                 const SizedBox(height: 100.0),
                 Image.asset('img/splash_screen.png'),
 
                 const SizedBox(height: 100.0),
-                const Text("Diagnosa penyakit pada kucing", style: TextStyle(
-                  fontSize: 14.0
-                ))
+                const Text(
+                  "Diagnosa penyakit pada kucing",
+                  style: TextStyle(
+                    fontSize: 14.0
+                  ),
+                ),
               ],
             ),
           ),
