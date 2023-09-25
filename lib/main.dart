@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
 import 'screens/splash.dart';
+import 'screens/login.dart';
 import 'screens/home.dart';
 import 'screens/diagnosa.dart';
 import 'screens/diagnosa_hasil.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
           secondary: const Color(0xFF967758),
           tertiary: const Color(0xFFEDE2CF),
           primaryContainer: const Color(0xFFFFFFFF),
+          secondaryContainer: const Color(0xFFBA704F),
         ),
       ),
       initialRoute: "/",
@@ -35,6 +37,11 @@ class MyApp extends StatelessWidget {
         switch (settings.name) {
           case "/":
             return MaterialPageRoute(builder: ((context) => const Splash()));
+          case "/login":
+            return PageTransition(
+              type: PageTransitionType.fade,
+              child: const Login()
+            );
           case "/home":
             return PageTransition(
               type: PageTransitionType.fade,
