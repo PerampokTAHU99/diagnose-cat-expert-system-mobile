@@ -37,14 +37,16 @@ class _HomeState extends State<Home> {
             ),
             TextButton(
               child: const Text("Keluar", style: TextStyle(color: Colors.redAccent),),
-              onPressed: () => Navigator.of(context).pop(true),
+              onPressed: () => Navigator.of(context).pushNamedAndRemoveUntil(
+                "/login",
+                (route) => false,
+              ),
             ),
           ],
         );
       },
     );
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -65,23 +67,28 @@ class _HomeState extends State<Home> {
                       Image.asset('img/cat.png'),
                       const Column(
                         children: [
-                          Text("Selamat Datang", style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18.0,
-                          )),
-                          Text("di CatCare App", style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18.0,
-                          )),
+                          Text(
+                            "Selamat Datang",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18.0,
+                            ),
+                          ),
+                          Text(
+                            "di CatCare App",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18.0,
+                            ),
+                          ),
                         ],
                       ),
                     ],
                   ),
                 ),
               ),
-
               const SizedBox(height: 40.0),
               const Text(
                 "MENU",
@@ -89,10 +96,9 @@ class _HomeState extends State<Home> {
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 16.0,
-                  color: Color(0xff967758)
+                  color: Color(0xff967758),
                 ),
               ),
-
               const SizedBox(height: 20.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -106,7 +112,7 @@ class _HomeState extends State<Home> {
                       children: [
                         Image.asset('img/diagnosa.png'),
                         const SizedBox(height: 5.0),
-                        const Text("Diagnosa")
+                        const Text("Diagnosa"),
                       ],
                     )
                   ),
@@ -119,7 +125,7 @@ class _HomeState extends State<Home> {
                         Image.asset('img/cek.png'),
                         const SizedBox(height: 5.0),
                         const Text("Riwayat"),
-                        const Text("Diagnosa")
+                        const Text("Diagnosa"),
                       ],
                     )
                   ),
@@ -131,7 +137,7 @@ class _HomeState extends State<Home> {
                       children: [
                         Image.asset('img/daftar.png'),
                         const SizedBox(height: 5.0),
-                        const Text("Daftar")
+                        const Text("Daftar"),
                       ],
                     ),
                   ),
@@ -150,7 +156,7 @@ class _HomeState extends State<Home> {
                       children: [
                         Image.asset('img/bantuan.png'),
                         const SizedBox(height: 5.0),
-                        const Text("Bantuan")
+                        const Text("Bantuan"),
                       ],
                     ),
                   ),
@@ -162,7 +168,7 @@ class _HomeState extends State<Home> {
                       children: [
                         Image.asset('img/info.png'),
                         const SizedBox(height: 5.0),
-                        const Text("Tentang")
+                        const Text("Tentang"),
                       ],
                     ),
                   ),
@@ -174,9 +180,9 @@ class _HomeState extends State<Home> {
                       children: [
                         Image.asset('img/keluar.png'),
                         const SizedBox(height: 5.0),
-                        const Text("Keluar")
+                        const Text("Keluar"),
                       ],
-                    )
+                    ),
                   ),
                 ],
               ),
