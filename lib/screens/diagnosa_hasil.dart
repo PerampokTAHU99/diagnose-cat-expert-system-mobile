@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'home.dart';
-
 class DiagnosaHasil extends StatefulWidget {
   const DiagnosaHasil({super.key});
 
@@ -33,7 +31,11 @@ class _DiagnosaHasilState extends State<DiagnosaHasil> {
                   Expanded(
                     child: Column(
                       children: [
-                        Text("Nama penyakit", style: TextStyle(fontWeight: FontWeight.w700), textAlign: TextAlign.center),
+                        Text(
+                          "Nama penyakit",
+                          style: TextStyle(fontWeight: FontWeight.w700),
+                          textAlign: TextAlign.center,
+                        ),
                         SizedBox(height: 10.0),
                         Text("Scabies kucing merupakan kudis pada kucing yang disebabkan oleh parasit yang disebut dengan Notoedres cati dan Sarcoptes scabiei. See more"),
                       ],
@@ -43,7 +45,6 @@ class _DiagnosaHasilState extends State<DiagnosaHasil> {
               ),
             ),
           ),
-
           const SizedBox(height: 8.0),
           const Card(
             elevation: 0,
@@ -56,7 +57,11 @@ class _DiagnosaHasilState extends State<DiagnosaHasil> {
                   Expanded(
                     child: Column(
                       children: [
-                        Text("Pencegahan", style: TextStyle(fontWeight: FontWeight.w700), textAlign: TextAlign.center),
+                        Text(
+                          "Pencegahan",
+                          style: TextStyle(fontWeight: FontWeight.w700),
+                          textAlign: TextAlign.center,
+                        ),
                         SizedBox(height: 10.0),
                         Text("Untuk mengobati kucing sakit yang terkena scabies, dokter dapat meresepkan obat antiparasit, misalnya ivermectin, baik yang diminum, dioles, atau disuntikkan. Pillhan obat ini akan disesuaikan dengan jenis tungau, area tubuh yang terkena, dan tingkat keparahan scabies pada kucing."),
                       ],
@@ -66,7 +71,6 @@ class _DiagnosaHasilState extends State<DiagnosaHasil> {
               ),
             ),
           ),
-
           const SizedBox(height: 8.0),
           const Card(
             elevation: 0,
@@ -79,7 +83,11 @@ class _DiagnosaHasilState extends State<DiagnosaHasil> {
                   Expanded(
                     child: Column(
                       children: [
-                        Text("Solusi", style: TextStyle(fontWeight: FontWeight.w700), textAlign: TextAlign.center),
+                        Text(
+                          "Solusi",
+                          style: TextStyle(fontWeight: FontWeight.w700),
+                          textAlign: TextAlign.center,
+                        ),
                         SizedBox(height: 10.0),
                         Text("PERIKSAKAN KE DOKTER HEWAN TERDEKAT UNTUK KETERANGAN DAN PEMERIKSAAN LEBIH LANJUT"),
                       ],
@@ -89,18 +97,16 @@ class _DiagnosaHasilState extends State<DiagnosaHasil> {
               ),
             ),
           ),
-
           const SizedBox(height: 8.0),
           ElevatedButton(
             onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const Home()));
+              Navigator.of(context).pushNamed("/home");
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Theme.of(context).colorScheme.secondary,
             ),
             child: const Text('Back to home'),
-          )
+          ),
         ],
       ),
     );
