@@ -125,7 +125,12 @@ class Login extends StatelessWidget {
                   ),
                   const Text("Belum punya akun?"),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                        "/register",
+                        (route) => false,
+                      );
+                    },
                     style: ElevatedButton.styleFrom().copyWith(
                       backgroundColor: MaterialStatePropertyAll(
                         Theme.of(context).colorScheme.secondary,
