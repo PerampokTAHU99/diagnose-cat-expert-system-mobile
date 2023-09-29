@@ -1,16 +1,19 @@
-# cat
+# CatCare App
 
-A new Flutter project.
+Aplikasi sistem pakar diagnosa kucing berbasis Mobile, dibangun dengan Flutter.
 
-## Getting Started
+<div style="display: flex;">
+    <img src="https://i.imgur.com/m2QepJj.png" alt="Layar Utama CatCare App" width="45%">
+    <div style="width: 25px;"></div>
+    <img src="https://i.imgur.com/QrCkrJM.png" alt="Layar Login CatCare App" width="45%">
+</div>
 
-This project is a starting point for a Flutter application.
+## Requirements
+Aplikasi ini dibangun dan ditargetkan khusus mobile, oleh karena itu dependency seperti dukungan Web dan Desktop tidak ada. Aplikasi ini pada saat pengembangan menargetkan kebutuhan sebagai berikut:
+- Android 7.0 (Nougat) ke atas
+- Koneksi Internet
+- Permission (Storage, Internet, WiFi)
 
-A few resources to get you started if this is your first Flutter project:
+## Installation
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+WIP
