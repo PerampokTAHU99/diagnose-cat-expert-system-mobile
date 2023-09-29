@@ -3,9 +3,9 @@
 Aplikasi sistem pakar diagnosa kucing berbasis Mobile, dibangun dengan Flutter.
 
 <div style="display: flex;">
-    <img src="https://i.imgur.com/m2QepJj.png" alt="Layar Utama CatCare App" width="45%">
-    <div style="width: 25px;"></div>
-    <img src="https://i.imgur.com/QrCkrJM.png" alt="Layar Login CatCare App" width="45%">
+    <img src="https://i.imgur.com/m2QepJj.png" alt="Layar Utama CatCare App" width="200">
+    <div style="width: 15px;"></div>
+    <img src="https://i.imgur.com/QrCkrJM.png" alt="Layar Login CatCare App" width="200">
 </div>
 
 ## Requirements
