@@ -2,11 +2,9 @@
 
 Aplikasi sistem pakar diagnosa kucing berbasis Mobile, dibangun dengan Flutter.
 
-<div style="display: flex;">
-    <img src="https://i.imgur.com/m2QepJj.png" alt="Layar Utama CatCare App" width="200">
-    <div style="width: 15px;"></div>
-    <img src="https://i.imgur.com/QrCkrJM.png" alt="Layar Login CatCare App" width="200">
-</div>
+| Main Menu                                     | Login                                     |
+| --------------------------------------------- | ----------------------------------------- |
+| ![Main Menu](https://i.imgur.com/m2QepJj.png) | ![Login](https://i.imgur.com/QrCkrJM.png) |
 
 ## Requirements
 Aplikasi ini dibangun dan ditargetkan khusus mobile, oleh karena itu dependency seperti dukungan Web dan Desktop tidak ada. Aplikasi ini pada saat pengembangan menargetkan kebutuhan sebagai berikut:
