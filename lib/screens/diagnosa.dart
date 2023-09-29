@@ -26,24 +26,35 @@ class _DiagnosaState extends State<Diagnosa> {
         title: const Text("Pilih gejala pada kucing"),
         elevation: 0,
       ),
-      body: ListView.builder(
-        padding: const EdgeInsets.all(12.0),
-        itemCount: _checkBoxTitles.length,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () => _toggleCheckbox(index, (!_isCheckedList[index])),
-            child: Card(
-              elevation: 0,
-              child: ListTile(
-                leading: Checkbox(
-                  value: _isCheckedList[index],
-                  onChanged: (value) => _toggleCheckbox(index, value!),
-                ),
-                title: Text(_checkBoxTitles[index]),
-              ),
+      body: Stack(
+        children: [
+          Align(
+            alignment: Alignment.center,
+            child: Image.asset(
+              "img/doc_2.png",
+              opacity: const AlwaysStoppedAnimation(0.5),
             ),
-          );
-        },
+          ),
+          ListView.builder(
+            padding: const EdgeInsets.all(12.0),
+            itemCount: _checkBoxTitles.length,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () => _toggleCheckbox(index, (!_isCheckedList[index])),
+                child: Card(
+                  elevation: 0,
+                  child: ListTile(
+                    leading: Checkbox(
+                      value: _isCheckedList[index],
+                      onChanged: (value) => _toggleCheckbox(index, value!),
+                    ),
+                    title: Text(_checkBoxTitles[index]),
+                  ),
+                ),
+              );
+            },
+          ),
+        ],
       ),
       floatingActionButton: ElevatedButton(
         onPressed: () {
