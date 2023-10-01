@@ -47,7 +47,12 @@ class _RiwayatState extends State<Riwayat> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text("Hasil Diagnosa", style: TextStyle(fontWeight: FontWeight.w700),),
+                                  Text(
+                                    "Hasil Diagnosa",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w700
+                                    ),
+                                  ),
                                   Text("Nama Penyakit: Scabies",),
                                   Text("Tanggal: 21 April 2022",),
                                 ],
