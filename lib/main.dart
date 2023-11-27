@@ -74,9 +74,11 @@ class MyApp extends StatelessWidget {
               child: const Daftar(),
             );
           case "/daftar-detail":
+            final args = settings.arguments as Map<String, dynamic>;
+
             return PageTransition(
               type: PageTransitionType.leftToRight,
-              child: const DaftarDetail(),
+              child: DaftarDetail(diseaseData: args),
             );
           case "/bantuan":
             return PageTransition(

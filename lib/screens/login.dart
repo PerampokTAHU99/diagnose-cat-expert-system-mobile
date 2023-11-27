@@ -1,7 +1,37 @@
+import 'package:catcare_app/widgets/snackbar.dart';
 import 'package:flutter/material.dart';
 
-class Login extends StatelessWidget {
+import '../middleware/base_client.dart';
+import '../middleware/secure_storage.dart';
+
+class Login extends StatefulWidget {
   const Login({super.key});
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  Future<bool> login(String username, String password) async {
+    Map<String, dynamic> jsonData = await BaseClient().post(
+      "/auth/login/",
+      body: {
+        'username': username,
+        'password': password
+      }
+    );
+
+    if (jsonData['status'] != 200) {
+      return false;
+    }
+
+    SecureStorage().writeToken(key: 'token', value: jsonData['token']);
+
+    return true;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +93,7 @@ class Login extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextField(
+                    controller: usernameController,
                     decoration: InputDecoration(
                       hintText: "Username",
                       prefixIcon: const Icon(Icons.person),
@@ -79,6 +110,7 @@ class Login extends StatelessWidget {
                     ),
                   ),
                   TextField(
+                    controller: passwordController,
                     keyboardType: TextInputType.visiblePassword,
                     obscureText: true,
                     decoration: InputDecoration(
@@ -104,11 +136,25 @@ class Login extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                        "/home",
-                        (context) => false,
+                    onPressed: () async {
+                      bool isLoggedIn = await login(
+                        usernameController.text,
+                        passwordController.text
                       );
+
+                      if (mounted) {
+                        if (isLoggedIn) {
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                            "/home",
+                            (context) => false,
+                          );
+                          return;
+                        }
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          Snackbar(text: "Username / Password salah"),
+                        );
+                      }
                     },
                     style: ElevatedButton.styleFrom().copyWith(
                       backgroundColor: MaterialStatePropertyAll(
