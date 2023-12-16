@@ -122,7 +122,7 @@ class _DiagnosaState extends State<Diagnosa> {
                     ),
                     title: Text(
                       listSymptom[index].descOfSymptom.toString(),
-                      style: TextStyle(fontSize: 15),
+                      style: const TextStyle(fontSize: 15),
                     ),
                   ),
                 ),
