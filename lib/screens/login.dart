@@ -14,6 +14,8 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
+  bool isAllowed = true;
+  String message = "";
 
   Future<bool> login(String username, String password) async {
     Map<String, dynamic> jsonData = await BaseClient().post(
@@ -24,13 +26,61 @@ class _LoginState extends State<Login> {
       }
     );
 
+    message = jsonData['message'];
+
     if (jsonData['status'] != 200) {
       return false;
+    }
+
+    if (jsonData['result']['roleId'] != "4003") {
+      isAllowed = false;
+    }
+    else {
+      isAllowed = true;
     }
 
     SecureStorage().writeToken(key: 'token', value: jsonData['token']);
 
     return true;
+  }
+
+  Future<void> _showWarningDialog(BuildContext context) async {
+    return showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text(
+            "Fitur belum tersedia",
+            style: TextStyle(
+              fontSize: 14
+            ),
+          ),
+          content: const SingleChildScrollView(
+            child: ListBody(
+              children: [
+                Text(
+                  "Untuk Admin, Dokter atau konsultan lainnya, harap gunakan "
+                  "aplikasi versi Web untuk akses.",
+                  style: TextStyle(
+                    fontSize: 12,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              child: Text(
+                "OK",
+                style: TextStyle(color: Theme.of(context).colorScheme.secondary,),
+              ),
+              onPressed: () => Navigator.of(context).pop(false),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -137,6 +187,14 @@ class _LoginState extends State<Login> {
                 children: [
                   ElevatedButton(
                     onPressed: () async {
+                      if (usernameController.text.isEmpty || passwordController.text.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          Snackbar(text: "Username atau Password tidak boleh kosong."),
+                        );
+
+                        return;
+                      }
+
                       bool isLoggedIn = await login(
                         usernameController.text,
                         passwordController.text
@@ -144,15 +202,20 @@ class _LoginState extends State<Login> {
 
                       if (mounted) {
                         if (isLoggedIn) {
-                          Navigator.of(context).pushNamedAndRemoveUntil(
-                            "/home",
-                            (context) => false,
-                          );
-                          return;
+                          if (isAllowed) {
+                            Navigator.of(context).pushNamedAndRemoveUntil(
+                              "/home",
+                              (context) => false,
+                            );
+
+                            return;
+                          }
+
+                          return _showWarningDialog(context);
                         }
 
                         ScaffoldMessenger.of(context).showSnackBar(
-                          Snackbar(text: "Username / Password salah"),
+                          Snackbar(text: message),
                         );
                       }
                     },
@@ -172,10 +235,7 @@ class _LoginState extends State<Login> {
                   const Text("Belum punya akun?"),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                        "/register",
-                        (route) => false,
-                      );
+                      Navigator.of(context).pushNamed("/register");
                     },
                     style: ElevatedButton.styleFrom().copyWith(
                       backgroundColor: MaterialStatePropertyAll(
