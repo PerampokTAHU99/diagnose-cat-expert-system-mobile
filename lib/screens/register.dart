@@ -1,7 +1,47 @@
 import 'package:flutter/material.dart';
 
-class Register extends StatelessWidget {
+import '../middleware/base_client.dart';
+import '../widgets/snackbar.dart';
+
+class Register extends StatefulWidget {
   const Register({super.key});
+
+  @override
+  State<Register> createState() => _RegisterState();
+}
+
+class _RegisterState extends State<Register> {
+  final nameController = TextEditingController();
+  final usernameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  String message = "";
+
+  Future<bool> register({
+    required String name,
+    required String username,
+    required String email,
+    required String password
+  }) async {
+    Map<String, dynamic> jsonData = await BaseClient().post(
+      "/data/users/",
+      body: {
+        'name': name,
+        'username': username,
+        'email': email,
+        'password': password,
+        'roleId': 4003
+      }
+    );
+
+    message = jsonData['message'];
+
+    if (jsonData['status'] != 201) {
+      return false;
+    }
+
+    return true;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -9,6 +49,7 @@ class Register extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       backgroundColor: Theme.of(context).colorScheme.primary,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Theme.of(context).colorScheme.secondary,
         title: const Text("Register CatCare App"),
         elevation: 0,
@@ -62,6 +103,7 @@ class Register extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextField(
+                    controller: nameController,
                     decoration: InputDecoration(
                       hintText: "Nama Lengkap",
                       prefixIcon: const Icon(Icons.person_4_outlined),
@@ -79,6 +121,7 @@ class Register extends StatelessWidget {
                   ),
                   const SizedBox(height: 10,),
                   TextField(
+                    controller: usernameController,
                     decoration: InputDecoration(
                       hintText: "Username",
                       prefixIcon: const Icon(Icons.person_outline),
@@ -96,6 +139,7 @@ class Register extends StatelessWidget {
                   ),
                   const SizedBox(height: 10,),
                   TextField(
+                    controller: emailController,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       hintText: "E-Mail",
@@ -114,6 +158,7 @@ class Register extends StatelessWidget {
                   ),
                   const SizedBox(height: 10,),
                   TextField(
+                    controller: passwordController,
                     keyboardType: TextInputType.visiblePassword,
                     obscureText: true,
                     decoration: InputDecoration(
@@ -139,7 +184,38 @@ class Register extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      if (nameController.text.isEmpty
+                          || usernameController.text.isEmpty
+                          || emailController.text.isEmpty
+                          || passwordController.text.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          Snackbar(text: "Kolom tidak boleh ada yang kosong."),
+                        );
+
+                        return;
+                      }
+
+                      bool isRegistered = await register(
+                        name: nameController.text,
+                        username: usernameController.text,
+                        email: emailController.text,
+                        password: passwordController.text
+                      );
+
+                      if (mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          Snackbar(text: message),
+                        );
+
+                        if (isRegistered) {
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                            "/login",
+                            (route) => false,
+                          );
+                        }
+                      }
+                    },
                     style: ElevatedButton.styleFrom().copyWith(
                       backgroundColor: MaterialStatePropertyAll(
                         Theme.of(context).colorScheme.secondaryContainer,
