@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../models/diagnose.dart';
+
 class DiagnosaHasil extends StatefulWidget {
-  const DiagnosaHasil({super.key});
+  final Diagnose? dataDiagnose;
+
+  const DiagnosaHasil({super.key, required this.dataDiagnose});
 
   @override
   State<DiagnosaHasil> createState() => _DiagnosaHasilState();
@@ -17,10 +21,10 @@ class _DiagnosaHasilState extends State<DiagnosaHasil> {
         title: const Text("Hasil Diagnosa"),
         elevation: 0,
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(12.0),
-        children: [
-          const Card(
+      body: widget.dataDiagnose == null
+      ? const SizedBox(
+        height: 125,
+        child: Card(
             elevation: 0,
             child: Padding(
               padding: EdgeInsets.all(14.0),
@@ -32,12 +36,41 @@ class _DiagnosaHasilState extends State<DiagnosaHasil> {
                     child: Column(
                       children: [
                         Text(
-                          "Nama penyakit",
+                          "Hasil Diagnosa Tidak Ditemukan",
                           style: TextStyle(fontWeight: FontWeight.w700),
                           textAlign: TextAlign.center,
                         ),
                         SizedBox(height: 10.0),
-                        Text("Scabies kucing merupakan kudis pada kucing yang disebabkan oleh parasit yang disebut dengan Notoedres cati dan Sarcoptes scabiei. See more"),
+                        Text("Silahkan kunjungi dokter hewan terdekat."),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+      )
+      : ListView(
+        padding: const EdgeInsets.all(12.0),
+        children: [
+          Card(
+            elevation: 0,
+            child: Padding(
+              padding: const EdgeInsets.all(14.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Text(
+                          widget.dataDiagnose!.nameOfDisease!,
+                          style: const TextStyle(fontWeight: FontWeight.w700),
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(height: 10.0),
+                        Text(widget.dataDiagnose!.description!),
                       ],
                     ),
                   ),
@@ -46,10 +79,10 @@ class _DiagnosaHasilState extends State<DiagnosaHasil> {
             ),
           ),
           const SizedBox(height: 8.0),
-          const Card(
+          Card(
             elevation: 0,
             child: Padding(
-              padding: EdgeInsets.all(14.0),
+              padding: const EdgeInsets.all(14.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,13 +90,13 @@ class _DiagnosaHasilState extends State<DiagnosaHasil> {
                   Expanded(
                     child: Column(
                       children: [
-                        Text(
+                        const Text(
                           "Pencegahan",
                           style: TextStyle(fontWeight: FontWeight.w700),
                           textAlign: TextAlign.center,
                         ),
-                        SizedBox(height: 10.0),
-                        Text("Untuk mengobati kucing sakit yang terkena scabies, dokter dapat meresepkan obat antiparasit, misalnya ivermectin, baik yang diminum, dioles, atau disuntikkan. Pillhan obat ini akan disesuaikan dengan jenis tungau, area tubuh yang terkena, dan tingkat keparahan scabies pada kucing."),
+                        const SizedBox(height: 10.0),
+                        Text(widget.dataDiagnose!.precaution!),
                       ],
                     ),
                   ),
@@ -72,10 +105,10 @@ class _DiagnosaHasilState extends State<DiagnosaHasil> {
             ),
           ),
           const SizedBox(height: 8.0),
-          const Card(
+          Card(
             elevation: 0,
             child: Padding(
-              padding: EdgeInsets.all(14.0),
+              padding: const EdgeInsets.all(14.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,13 +116,13 @@ class _DiagnosaHasilState extends State<DiagnosaHasil> {
                   Expanded(
                     child: Column(
                       children: [
-                        Text(
+                        const Text(
                           "Solusi",
                           style: TextStyle(fontWeight: FontWeight.w700),
                           textAlign: TextAlign.center,
                         ),
-                        SizedBox(height: 10.0),
-                        Text("PERIKSAKAN KE DOKTER HEWAN TERDEKAT UNTUK KETERANGAN DAN PEMERIKSAAN LEBIH LANJUT"),
+                        const SizedBox(height: 10.0),
+                        Text(widget.dataDiagnose!.solution!),
                       ],
                     ),
                   ),
