@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import '../middleware/base_client.dart';
+import '../models/diagnose.dart';
 import '../models/symptom.dart';
 import '../widgets/snackbar.dart';
 
@@ -17,7 +18,9 @@ class _DiagnosaState extends State<Diagnosa> {
   List<Symptom> listSymptom = [];
   final List<int> listChecked = [];
   ScrollController scrollController = ScrollController();
+  Diagnose? dataDiagnose = Diagnose();
   bool isVisible = true;
+  String message = "";
 
   @override
   void initState() {
@@ -72,15 +75,36 @@ class _DiagnosaState extends State<Diagnosa> {
     );
   }
 
-  void toggleCheckbox(int index) {
-    if (listChecked.contains(index)) {
-      listChecked.remove(index);
+  void toggleCheckbox(int idSymptom) {
+    if (listChecked.contains(idSymptom)) {
+      listChecked.remove(idSymptom);
     }
     else {
-      listChecked.add(index);
+      listChecked.add(idSymptom);
     }
 
     setState(() {});
+  }
+
+  Future<void> createDiagnose(List<int> symptoms) async {
+    Map<String, dynamic> jsonData = await BaseClient().post(
+      "/data/diagnoses/",
+      body: {
+        'symptoms': symptoms
+      }
+    );
+
+    message = jsonData['message'];
+
+    if (jsonData['status'] != 200) {
+      dataDiagnose = null;
+
+      return;
+    }
+
+    dataDiagnose = Diagnose.fromJson(jsonData['result']);
+
+    return;
   }
 
   @override
@@ -112,13 +136,13 @@ class _DiagnosaState extends State<Diagnosa> {
             itemCount: listSymptom.length,
             itemBuilder: (context, index) {
               return GestureDetector(
-                onTap: () => toggleCheckbox(index),
+                onTap: () => toggleCheckbox(listSymptom[index].idSymptom!),
                 child: Card(
                   elevation: 0,
                   child: ListTile(
                     leading: Checkbox(
-                      value: listChecked.contains(index),
-                      onChanged: (_) => toggleCheckbox(index),
+                      value: listChecked.contains(listSymptom[index].idSymptom!),
+                      onChanged: (_) => toggleCheckbox(listSymptom[index].idSymptom!),
                     ),
                     title: Text(
                       listSymptom[index].descOfSymptom.toString(),
@@ -137,16 +161,33 @@ class _DiagnosaState extends State<Diagnosa> {
         child: Visibility(
           visible: isVisible,
           child: ElevatedButton(
-            onPressed: () {
-              if (listChecked.isEmpty) {
+            onPressed: () async {
+              if (listChecked.length < 4) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  Snackbar(text: "Pilih minimal 1 (satu) gejala")
+                  Snackbar(text: "Pilih minimal 4 (empat) gejala")
                 );
 
                 return;
               }
 
-              Navigator.of(context).pushNamed("/diagnosa-hasil");
+              if (listChecked.length > 10) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  Snackbar(text: "Pilih maksimal 10 (sepuluh) gejala")
+                );
+
+                return;
+              }
+
+             await createDiagnose(listChecked);
+
+              if (mounted) {
+                Navigator.of(context).pushNamed(
+                  "/diagnosa-hasil",
+                  arguments: dataDiagnose,
+                );
+
+                return;
+              }
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Theme.of(context).colorScheme.secondary,
