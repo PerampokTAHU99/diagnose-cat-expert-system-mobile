@@ -16,6 +16,7 @@ class _LoginState extends State<Login> {
   final passwordController = TextEditingController();
   bool isAllowed = true;
   String message = "";
+  String name = "";
 
   Future<bool> login(String username, String password) async {
     Map<String, dynamic> jsonData = await BaseClient().post(
@@ -40,6 +41,8 @@ class _LoginState extends State<Login> {
     }
 
     SecureStorage().writeToken(key: 'token', value: jsonData['token']);
+
+    name = jsonData['result']['name'];
 
     return true;
   }
@@ -206,6 +209,10 @@ class _LoginState extends State<Login> {
                             Navigator.of(context).pushNamedAndRemoveUntil(
                               "/home",
                               (context) => false,
+                            );
+
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              Snackbar(text: "Selamat datang, $name!"),
                             );
 
                             return;
