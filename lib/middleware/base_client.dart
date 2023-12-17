@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
+import '../middleware/secure_storage.dart';
+
 class BaseClient {
   static const String apiUrl = "http://10.0.2.2:8000";
 
@@ -15,10 +17,13 @@ class BaseClient {
     ) async {
     Uri endpoint = Uri.parse(apiUrl + url);
 
+    String token = await SecureStorage().readToken(key: 'token');
+
     http.Response response = await client.get(
       endpoint,
       headers: {
         'Content-Type': "application/json",
+        'TOKEN': token,
         ...headers
       }
     );
@@ -35,10 +40,13 @@ class BaseClient {
     ) async {
     Uri endpoint = Uri.parse(apiUrl + url);
 
+    String token = await SecureStorage().readToken(key: 'token');
+
     http.Response response = await client.post(
       endpoint,
       headers: {
         'Content-Type': "application/json",
+        'TOKEN': token,
         ...headers
       },
       body: jsonEncode(body),
@@ -56,10 +64,13 @@ class BaseClient {
     ) async {
     Uri endpoint = Uri.parse(apiUrl + url);
 
+    String token = await SecureStorage().readToken(key: 'token');
+
     http.Response response = await client.put(
       endpoint,
       headers: {
         'Content-Type': "application/json",
+        'TOKEN': token,
         ...headers
       },
       body: jsonEncode(body),
@@ -77,10 +88,13 @@ class BaseClient {
     ) async {
     Uri endpoint = Uri.parse(apiUrl + url);
 
+    String token = await SecureStorage().readToken(key: 'token');
+
     http.Response response = await client.delete(
       endpoint,
       headers: {
         'Content-Type': "application/json",
+        'TOKEN': token,
         ...headers
       },
       body: jsonEncode(body),
