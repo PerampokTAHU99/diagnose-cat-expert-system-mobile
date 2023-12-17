@@ -12,6 +12,7 @@ import 'screens/daftar.dart';
 import 'screens/daftar_detail.dart';
 import 'screens/bantuan.dart';
 import 'screens/tentang.dart';
+import '../models/diagnose.dart';
 
 void main() => runApp(const MyApp());
 
@@ -59,9 +60,18 @@ class MyApp extends StatelessWidget {
               child: const Diagnosa(),
             );
           case "/diagnosa-hasil":
+            Diagnose? dataDiagnose;
+
+            if (settings.arguments == null) {
+              dataDiagnose = null;
+            }
+            else {
+              dataDiagnose = settings.arguments as Diagnose;
+            }
+
             return PageTransition(
               type: PageTransitionType.bottomToTop,
-              child: const DiagnosaHasil(),
+              child: DiagnosaHasil(dataDiagnose: dataDiagnose),
             );
           case "/riwayat":
             return PageTransition(
