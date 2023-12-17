@@ -1,12 +1,12 @@
 class Symptom {
-  String? idSymptom;
+  int? idSymptom;
   String? codeOfSymptom;
   String? descOfSymptom;
 
   Symptom({this.idSymptom, this.codeOfSymptom, this.descOfSymptom});
 
   Symptom.fromJson(Map<String, dynamic> json) {
-    idSymptom = json['idSymptom'];
+    idSymptom = int.parse(json['idSymptom']);
     codeOfSymptom = json['codeOfSymptom'];
     descOfSymptom = json['descOfSymptom'];
   }

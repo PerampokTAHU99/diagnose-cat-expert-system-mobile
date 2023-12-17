@@ -1,5 +1,5 @@
 class Disease {
-  String? idDisease;
+  int? idDisease;
   String? codeOfDisease;
   String? nameOfDisease;
   String? latinNameOfDisease;
@@ -20,7 +20,7 @@ class Disease {
   });
 
   Disease.fromJson(Map<String, dynamic> json) {
-    idDisease = json['idDisease'];
+    idDisease = int.parse(json['idDisease']);
     codeOfDisease = json['codeOfDisease'];
     nameOfDisease = json['nameOfDisease'];
     latinNameOfDisease = json['latinNameOfDisease'];
