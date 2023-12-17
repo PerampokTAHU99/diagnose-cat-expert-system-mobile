@@ -1,9 +1,9 @@
-import 'package:catcare_app/widgets/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import '../middleware/base_client.dart';
 import '../models/symptom.dart';
+import '../widgets/snackbar.dart';
 
 class Diagnosa extends StatefulWidget {
   const Diagnosa({super.key});

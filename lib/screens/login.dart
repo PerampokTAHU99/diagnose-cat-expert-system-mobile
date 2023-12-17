@@ -1,8 +1,8 @@
-import 'package:catcare_app/widgets/snackbar.dart';
 import 'package:flutter/material.dart';
 
 import '../middleware/base_client.dart';
 import '../middleware/secure_storage.dart';
+import '../widgets/snackbar.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
