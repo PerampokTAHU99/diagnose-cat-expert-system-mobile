@@ -19,7 +19,8 @@ class DaftarDetail extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Image.network("${BaseClient.apiUrl}/${diseaseData['picture']}"),
+            Image.network("${BaseClient.imageUrl}/${diseaseData['picture']}"),
+
             const SizedBox(height: 10.0),
             Padding(
               padding: const EdgeInsets.all(18.0),
