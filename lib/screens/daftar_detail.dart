@@ -20,7 +20,6 @@ class DaftarDetail extends StatelessWidget {
         child: Column(
           children: [
             Image.network("${BaseClient.apiUrl}/${diseaseData['picture']}"),
-
             const SizedBox(height: 10.0),
             Padding(
               padding: const EdgeInsets.all(18.0),
