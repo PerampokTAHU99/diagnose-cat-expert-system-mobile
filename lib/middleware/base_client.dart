@@ -5,7 +5,8 @@ import 'package:http/http.dart' as http;
 import '../middleware/secure_storage.dart';
 
 class BaseClient {
-  static const String apiUrl = "http://10.0.2.2:8000";
+  static const String apiUrl = "http://cat-care.my.id:8000";
+  static const String imageUrl = "$apiUrl/img";
 
   final client = http.Client();
 
