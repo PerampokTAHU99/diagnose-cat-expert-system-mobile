@@ -41,9 +41,7 @@ class MyApp extends StatelessWidget {
             return MaterialPageRoute(builder: ((context) => const Splash()));
           case "/login":
             return PageTransition(
-              type: PageTransitionType.fade,
-              child: const Login()
-            );
+                type: PageTransitionType.fade, child: const Login());
           case "/register":
             return PageTransition(
               type: PageTransitionType.fade,
@@ -64,8 +62,7 @@ class MyApp extends StatelessWidget {
 
             if (settings.arguments == null) {
               dataDiagnose = null;
-            }
-            else {
+            } else {
               dataDiagnose = settings.arguments as Diagnose;
             }
 
@@ -100,9 +97,10 @@ class MyApp extends StatelessWidget {
               type: PageTransitionType.fade,
               child: const Tentang(),
             );
-          default: return MaterialPageRoute(
-            builder: ((context) => const Placeholder()),
-          );
+          default:
+            return MaterialPageRoute(
+              builder: ((context) => const Placeholder()),
+            );
         }
       },
     );
