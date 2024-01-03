@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class Diagnose {
   int? idDisease;
   String? codeOfDisease;
@@ -7,6 +9,7 @@ class Diagnose {
   String? description;
   String? precaution;
   String? solution;
+  String? date;
 
   Diagnose({
     this.idDisease,
@@ -28,6 +31,14 @@ class Diagnose {
     description = json['description'];
     precaution = json['precaution'];
     solution = json['solution'];
+
+    date = null;
+    String? rawDate = json['date'];
+    DateTime? parsedDate = rawDate != null ? DateTime.tryParse(rawDate) : null;
+
+    if (parsedDate != null) {
+      date = DateFormat('dd-MM-yyyy HH:mm:ss').format(parsedDate);
+    }
   }
 
   Map<String, dynamic> toJson() {
